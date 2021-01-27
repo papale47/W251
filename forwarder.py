@@ -1,34 +1,37 @@
-import cv2
 import paho.mqtt.client as mqtt
-import base64
-import time
 import os
+import time
 
-
-MQTT_BROKER = 'mqtt'
+MQTT_HOST = 'mqtt'
 MQTT_TOPIC = 'streaming'
 
+REMOTE_MQTT_HOST = '3.18.110.190'
+REMOTE_MQTT_TOPIC = 'streaming2'
+REMOTE_MQTT_PORT = 1883
 
-face_cascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-cap = cv2.VideoCapture(0)
 
-# Phao-MQTT Clinet
-client = mqtt.Client()
+def on_connect(client, userdata, flags, rc):
+    print("Connected with result code "+str(rc))
+    client.subscribe(MQTT_TOPIC)
 
-# Connect
-client.connect(MQTT_BROKER)
-try:
-    while True:
-        ret, frame = cap.read()
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        faces = face_cascade.detectMultiScale(gray, 1.3, 5)
-        for(x,y,w,h) in faces:
-            face = frame[y:y+h, x:x+w]
-            rc, jpg = cv2.imencode('.jpg', face)
-            msg = base64.b64encode(jpg)
-            client.publish(MQTT_TOPIC, payload=msg, qos=0, retain=False)
-        
-except:
-    cap.release()
-    client.disconnect()
-    print("\nAll Done...")
+
+def on_message(client, userdata, message):
+    print("Message received.")
+    remote_client.connect(REMOTE_MQTT_HOST, REMOTE_MQTT_PORT, 60)
+    msg = message.payload
+    remote_client.publish(REMOTE_MQTT_TOPIC, payload=msg, qos=0, retain=False)
+    
+
+client = mqtt.Client('receiving')
+remote_client = mqtt.Client('forwarding')
+
+client.on_connect = on_connect
+client.on_message = on_message
+
+
+client.connect(MQTT_HOST)
+#remote_client.connect(REMOTE_MQTT_BROKER)
+
+# Starting thread which will receive the frames
+client.loop_forever()
+
