@@ -1,0 +1,15 @@
+	• Name all the layers in the network, describe what they do.
+		○ Convolutional Layers
+			§ Each convolutional layer consists of a series of filters, each with a set kernel size.  These filters are passed over the features, where the number of features included in the filter is a function of the kernel size.  The filter applies a mathematical operation on the features using weights which are initially random but changed as the model is trained.  The output of these mathematical operations is a feature map.  
+		○ Max Pooling Layer
+			§ These layers look at each feature map and take the maximum value for each.  The output of the max pooling operation is the concatenated and represents a new feature vector.
+	• Experiment with the number and size of filters in each layer. Does it improve the accuracy?
+		○ Not Really.  The model seems reasonably well constructed.
+	• Remove the pooling layers. Does it impact the accuracy?
+		○ The model achieved a good validation accurac faster but ultimately did not achieve as high of a validation accuracy.
+	• Add one more conv layer. Does it help with accuracy?
+		○ It appears to have made validation accuracy worse.
+	• Increase the batch size. What impact does it have?
+		○ I increase it to 50 and it did not seem to help.
+	• What is the best accuracy you can achieve? Are you over 99%? 99.5%?
+		○ 96%
