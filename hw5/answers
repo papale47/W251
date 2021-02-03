@@ -1,0 +1,16 @@
+What is TensorFlow? Which company is the leading contributor to TensorFlow?
+-TensorFlow is an end-to-end open source platform for machine learning. It has a comprehensive, flexible ecosystem of tools, libraries and community resources that lets researchers push the state-of-the-art in ML and developers easily build and deploy ML powered applications.
+-TensorFlow was developed by the Google Brain team for internal Google use.
+
+What is TensorRT? How is it different from TensorFlow?
+-NVIDIA TensorRT is an SDK for high-performance deep learning inference. It includes a deep learning inference optimizer and runtime that delivers low latency and high-throughput for deep learning inference applications.
+-TensorFlow remains the most popular deep learning framework today while NVIDIA TensorRT speeds up deep learning inference through optimizations and high-performance runtimes for GPU-based platforms.
+
+What is ImageNet? How many images does it contain? How many classes?
+-ImageNet is an image database organized according to the WordNet hierarchy (currently only the nouns), in which each node of the hierarchy is depicted by hundreds and thousands of images.
+-More than 14 million images have been hand-annotated by the project to indicate what objects are pictured and in at least one million of the images, bounding boxes are also provided
+-The ILSVRC uses a "trimmed" list of only 1000 image categories or "classes", including 90 of the 120 dog breeds classified by the full ImageNet schema.
+
+Please research and explain the differences between MobileNet and GoogleNet (Inception) architectures.
+-MobileNets are based on a streamlined architecture that uses depth-wise separable convolutions to build light weight deep neural networks.
+-GoogLeNet or Inception v1 is basically a convolutional neural network (CNN) which is 27 layers deep.  There is a layer called inception layer which allows internal sublayers to pick and choose which filter size will be relevant to learn the required information.
