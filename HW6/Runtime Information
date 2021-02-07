@@ -1,0 +1,7 @@
+I conducted HW6 using a p3.2xlarge spot instance with 8 vCPUs.
+
+Regarding runtimes,
+-Tokenizing the text sequences took: 35:56
+-Training the BERT model on the 1M records for 1 epoch took: 1:30:22
+-Evaluating the BERT model on the 500k records took: 31:43
+
