@@ -1,0 +1,7 @@
+W0306 23:19:19.111657 Reloader tf_logging.py:120] Found more than one graph event per run, or there was a metagraph containing a graph_def, as well as one or more graph events.  Overwriting the graph with the newest event.
+W0306 23:19:19.111657 140340405741312 tf_logging.py:120] Found more than one graph event per run, or there was a metagraph containing a graph_def, as well as one or more graph events.  Overwriting the graph with the newest event.
+W0306 23:19:19.154326 Reloader tf_logging.py:120] Found more than one metagraph event per run. Overwriting the metagraph with the newest event.
+W0306 23:19:19.154326 140340405741312 tf_logging.py:120] Found more than one metagraph event per run. Overwriting the metagraph with the newest event.
+TensorBoard 1.12.1 at http://ip-172-31-37-57:6006 (Press CTRL+C to quit)
+E0307 04:24:41.835522 Thread-118 _internal.py:88] ::ffff:162.142.125.53 - - [07/Mar/2021 04:24:41] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x166Á×\x03³')
+E0307 04:24:41.835522 140339981047552 _internal.py:88] ::ffff:162.142.125.53 - - [07/Mar/2021 04:24:41] code 400, message Bad HTTP/0.9 request type ('\x16\x03\x01\x00{\x01\x00\x00w\x03\x03\x166Á×\x03³')
