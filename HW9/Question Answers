@@ -1,0 +1,37 @@
+1) How long does it take to complete the training run? (hint: this session is on distributed training, so it will take a while)
+It took 12 hours and 59 minutes to train the model on 50k steps.  One of the reasons this took especially long is due to the fact that Amazon AWS only approved me for 16 VCPUs instead of 32.
+
+2) Do you think your model is fully trained? How can you tell?
+I do not think the model is fully trained at this point.  The BLEU score was still gradually increasing and the eval loss was still gradually decreasing at the end of the training.  This indicates that the model is still improving its predictions on the evaluation dataset.
+
+3) Were you overfitting?
+No, I do not think the model was overfitting at this point.  The primary reason for this conclusion is eval loss.  At the end of training, the eval loss was still decreasing.  If the model was overfitting on the training data, I would expect to see eval loss hit a minimum and then begin to increase.
+
+4) Were your GPUs fully utilized?
+No, the GPU utilization in both EC2 instances were remained less than 25% for the entire training period, indicating to me that they were not fully utilized.
+
+5) Did you monitor network traffic (hint: apt install nmon ) ? Was network the bottleneck?
+I did monitor the network traffic using nmon, as well as with the monitoring tab for the EC2 instances being used.  In looking at those, I do suspect the network was the bottleneck.  Specifically, in looking at nmon, both the transmission and receiving throughput was ~283MB/s.   Though, this is a bit lower than the 25Gb/s maximum network bandwidth, it is still quite high.  Additionally, in looking at the monitoring tab for the EC2 instances being used, I could see that the network bandwidth had also maxed out while the model was running, which is an indication that network traffic was the bottleneck.
+
+6) Take a look at the plot of the learning rate and then check the config file. Can you explan this setting?
+In the plot of the learning rate, it was clear that the learning rate had increased linearly until the model had reached 8000 steps (which is specified as the number of warmup steps in the configuration file).  Warmup is a way to reduce the primacy effect of the early training examples.
+
+7) How big was your training set (mb)? How many training lines did it contain?
+The training set (train.clean.en.shuffled.BPE_common.32K.tok) is 915MB and contains 4,524,868 lines.
+
+8) What are the files that a TF checkpoint is comprised of?
+There appear to be five files associated with a checkpoint.  A list of each file associated with the final checkpoint is provided below.  Given the side of the model.ckpt-50000.data-00000-of-00001 file, this one is likely the file which contains the weights for the model parameters at the time the checkpoint was created.
+-rwxrwx--- 1 root root  132 Mar  7 12:06 checkpoint
+-rwxrwx--- 1 root root  43M Mar  7 12:06 events.out.tfevents.1615071918.ip-172-31-37-57
+-rwxrwx--- 1 root root 697M Mar  7 12:06 model.ckpt-50000.data-00000-of-00001
+-rwxrwx--- 1 root root  27K Mar  7 12:06 model.ckpt-50000.index
+-rwxrwx--- 1 root root  12M Mar  7 12:06 model.ckpt-50000.meta
+
+9) How big is your resulting model checkpoint (mb)?
+The model.ckpt-50000.data-00000-of-00001 file is 697MB.
+
+10) Remember the definition of a "step". How long did an average step take?
+Training the model of 50k steps took 12 hours and 59 minutes.  This equates 1 step every .93 seconds, or 1.075 steps/second.
+
+11) How does that correlate with the observed network utilization between nodes?
+On average, 1.075 steps are completed per second.  During each step, the model parameters are updated, which based on the checkpoint size, entails transmitting ~697MB of data to ensure model weights are in sync.  Given that the instance was transmitting and receiving ~300MB/second, the file size/step does seem to reasonably check with the network traffic.
