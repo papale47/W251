@@ -34,4 +34,4 @@ The model.ckpt-50000.data-00000-of-00001 file is 697MB.
 Training the model of 50k steps took 12 hours and 59 minutes.  This equates 1 step every .93 seconds, or 1.075 steps/second.
 
 11) How does that correlate with the observed network utilization between nodes?
-On average, 1.075 steps are completed per second.  During each step, the model parameters are updated, which based on the checkpoint size, entails transmitting ~697MB of data to ensure model weights are in sync.  Given that the instance was transmitting and receiving ~300MB/second, the file size/step does seem to reasonably check with the network traffic.
+On average, 1.075 steps are completed per second.  During each step, the model parameters are updated, which based on the checkpoint size, entails transmitting ~697MB of data to ensure model weights are in sync.  Given that the instance was transmitting and receiving ~300MB/second, the file size/step does seem to reasonably check with the network traffic. 
