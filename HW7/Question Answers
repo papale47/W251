@@ -1,0 +1,11 @@
+1) Describe your solution in detail. What neural network did you use? What dataset was it trained on? What accuracy does it achieve?
+My solution entailed replacing the OpenCV face detector with the MTCNN model.  Though I did not train the model, it was trained on the FDDB and WIDER datasets for face detection and the AFLW dataset for face alignment.  Depending on the dataset, the accuracy of the model ranged from between 93 and 96%.
+
+2) Does it achieve reasonable accuracy in your empirical tests? Would you use this solution to develop a robust, production-grade system?
+Yes, it captured the faces that were present in the data obtained from the webcam.  I would consider using this solution to develop a robust, production-grade system.
+
+3) What framerate does this method achieve on the Jetson? Where is the bottleneck?
+The estimated frames per second was 3.4 frames per second.  The bottleneck appears to be with the MTCNN model inferences.
+
+4) Which is a better quality detector: the OpenCV or the neural one?
+The MTCNN appears to a better quality detector.
