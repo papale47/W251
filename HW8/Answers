@@ -1,1 +1,36 @@
+Part 1:
+In the time allowed, how many images did you annotate?
+-I annotated 13 images.  I spent a large amount of time trying to get labelImg to work and open a window using the Windows Subsystem for Linux on Windows (I was never able to get it to work per the instructions but I was able to install it), so I spent less time annotating images.
 
+Home many instances of the Millennium Falcon did you annotate? How many TIE Fighters?
+-I annotated the Millennium Falcon 8 times and Tie Fighters 14 times.
+
+Based on this experience, how would you handle the annotation of large image data set?
+-I would crowdsource this task using something like Amazon Turk.
+
+Think about image augmentation? How would augmentations such as flip, rotation, scale, cropping, and translation effect the annotations?
+-For the tie fighters, scale and flip wouldn't make much difference due to the shape of the image and the fact that it was captured at various distances.  For the millenium falcon, I could see flip being more problematic given that it is a less symmetric shape.  Ultimately, however, given that the images were captured at various distances and with various aspects, I believe that most augmentations would work acceptably.
+
+
+Part 2:
+Flip
+-For a horizontal flip, the image appears to be mirrored (i.e. facing the opposite direction).  For a vertical flip, the image is upside down.
+
+Rotation
+-The image is rotated around the center (i.e. the center of the image is the axis along with the image is rotated).
+
+Scale
+-The image is resized.
+
+Crop
+-The amount of the original image that is shown is altered.
+
+Translation
+-The image is moved without being rotated (which could result in the image also being cropped).
+
+Noise
+-Graininess is added to the image to make it less sharp.
+
+
+Part 3:
+A visual representation of the audio (e.g. waveform or spectrogram) is needed so a box can be drawn over certain sections and labelled.
