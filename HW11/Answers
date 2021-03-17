@@ -9,7 +9,8 @@ Did you try any other changes (like adding layers or changing the epsilon value)
 -I changed epsilon several times and found that starting with a low epsilon value had the largest impact on training.  Specifically, I changed the initial value from 1 to .9 and found a slight improvemenet to training.  I then set the initial epsilon value to .2, and the model converged fairly rapidly (average reward was positive by the 67th training run).
 
 Did your changes improve or degrade the model? How close did you get to a test run with 100% of the scores above 200?
--Adding depth to the network did seem to improve the model, but the biggest improvement came with lowering the initial value of epsilon.
+-Adding depth to the network did seem to improve the model, but the biggest improvement came with lowering the initial value of epsilon.  With an epsilon value of .2 and the parameters described in the answer to question 1, the final version of the model achieved an average score of 200 after training after 397 training runs.
+-On the final version of the model, 87% of the test runs finsihed with scores above 200, and the average test score was 229.8.
 
 Based on what you observed, what conclusions can you draw about the different parameters and their values?
 -Based on what I observed, adding some additional depth to the network was helpful.  As long as the dimensions for the first layer remain mapped to the number of variables assocatied with the current state vector and the final output vector remains mapped to the actions that the lander can take, adding depth to the network between the input and output layers was simply a matter of trial and error to determine the right balance.
