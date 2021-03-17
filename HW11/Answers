@@ -1,0 +1,21 @@
+What parameters did you change, and what values did you use?
+-I changed the number of neurons in the dense layers, the number of layers, the activation function in the second to last layer, as well as epsilon.  The final set of parameters entailed using 512 neurons for the first layer (relu activation) and 256 for the second layer  (tanh activation).
+
+Why did you change these parameters?
+-I increased the number of neurons in the dense layers and the number of layers because it seemed that a network of greater depth/complexity might better capture the intracies associated with the complex maneuver of landing the lander.  I did find that making the network excessively deep (i.e. ~2k neurons between 3 dense layers) did not result in improve performance (at least not in the first 50-60 training runs).  I changed the activation function before the output layer to be tanh so that the input vector being fed to the final layer had both positive and negative values.   
+
+Did you try any other changes (like adding layers or changing the epsilon value) that made things better or worse?
+-I did try adding an additional dense layer, but this did not seem to improve performance and may have made it marginally worse.
+-I changed epsilon several times and found that starting with a low epsilon value had the largest impact on training.  Specifically, I changed the initial value from 1 to .9 and found a slight improvemenet to training.  I then set the initial epsilon value to .2, and the model converged fairly rapidly (average reward was positive by the 67th training run).
+
+Did your changes improve or degrade the model? How close did you get to a test run with 100% of the scores above 200?
+-Adding depth to the network did seem to improve the model, but the biggest improvement came with lowering the initial value of epsilon.
+
+Based on what you observed, what conclusions can you draw about the different parameters and their values?
+-Based on what I observed, adding some additional depth to the network was helpful.  As long as the dimensions for the first layer remain mapped to the number of variables assocatied with the current state vector and the final output vector remains mapped to the actions that the lander can take, adding depth to the network between the input and output layers was simply a matter of trial and error to determine the right balance.
+
+What is the purpose of the epsilon value?
+-The purpose of the epsilon value is to provide the model with a way of choosing between exploitation and exploration.  Specifically, as epsilon approaches 0, the model will choose the action associated with the highest Q value (i.e. exploitation).  As epsilon approaches 1, the model will randomly choose any action (i.e. exploration).  In this case, setting a lower value of epsilon (i.e. 0.2) allowed the model to generally preference actions that had higher Q values but still allowed for occasional instances of random actions (which may well result in a higher reward).
+
+Describe "Q-Learning".
+-Q learning is a form of deep reinforcement learning wherein the action chosen by the model at any given step is a function of the Q value and epsilon.  The Q value represents the long-term value assocaited with taking a certain action at a certain step. The action with with highest Q value will generally be chosen at any given step, except in cases where the model chooses a random action, regardless of it's Q value.  The probability that the model will take the random action instead of choosing the action with the highest Q value is a function of epsilon as described above.
