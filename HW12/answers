@@ -1,0 +1,21 @@
+I was unable to complete HW12.  I got stuck on the following step: 
+
+source /root/.bash_profile
+chmod +x Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install
+./Spectrum_Scale_Standard-5.0.5.0-x86_64-Linux-install --silent  #(this command needs to be run on every node)
+/usr/lpp/mmfs/5.0.5.0/installer/spectrumscale node add gpfs1  #(this command needs to be run just gpfs1)
+/usr/lpp/mmfs/5.0.5.0/installer/spectrumscale node add gpfs2  #(this command needs to be run just gpfs1)
+/usr/lpp/mmfs/5.0.5.0/installer/spectrumscale node add gpfs3  #(this command needs to be run just gpfs1)
+
+I believe that part of the issue may have been due to the fact that the previous command (wget https://ucberkeley-gpfs.s3.amazonaws.com/Spectrum_Scale_Advanced-5.0.5.6-x86_64-Linux-install) appears to be pulling in Spectrum_Scale_Advanced 5.0.5.6 whereas the node add command (as written in the instructions is for Spectrum_Scale_Standard and for 5.0.5.0).  As shown below, I updated that command to reflect the different edition, but I could still not get it to work.
+
+Specifically, I was able to run: 
+source /root/.bash_profile
+chmod +x Spectrum_Scale_Advanced-5.0.5.6-x86_64-Linux-install
+./Spectrum_Scale_Advanced-5.0.5.6-x86_64-Linux-install --silent 
+
+But when I tried to execute: /usr/lpp/mmfs/5.0.5.6/installer/spectrumscale node add gpfs1
+I receieved the following error: -bash: /usr/lpp/mmfs/5.0.5.6/installer/spectrumscale: /usr/bin/python2: bad interpreter: No such file or directory
+
+I tried installing the aws cli manually as well as python3 to see if that might have helped in some way, but it did not.help.
+
