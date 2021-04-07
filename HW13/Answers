@@ -1,0 +1,3 @@
+-It took just over 9 hours to train the Resnet18 model, and on the final test, it achieved a top-1 accuracy of 63.44% and a top-5 accuracy of 90.04%
+-I stopped training the Wide ResNet 50-2 after >24 hours of training (Epoch 56).  At this point, the top-1 accuracy was 42.9% and the top-5 accuracy was 77.6%.
+-The only parameters I adjusted were the number of epochs and the batch size (changed from 8 to 6).
